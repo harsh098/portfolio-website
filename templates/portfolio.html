@@ -7,117 +7,25 @@
         Here is some of my work that I've done in various programming languages.
     </p>
     <div class="portfolios">
+        {% for project in projects %}
         <div class="portfolio-item">
             <div class="port-image">
-                <img src="{% static 'img/port1.png' %}" alt="">
+                <img src="{{ project.image.url }}" alt="">
             </div>
             <div class="hover-items">
-                <h3>Video2MP3<br /> Microservices</h3>
+                <h3>{{ project.project_name }}</h3>
                 <div class="icons">
-                    <a href="#" class="icon">
+                    <a href="{{ project.github }}" class="icon">
                         <i class="fab fa-github"></i>
                     </a>
+                    {% if project.other_link %}
                     <a href="#" class="icon">
                         <i class="fas fa-link"></i>
                     </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <div class="portfolio-item">
-            <div class="port-image">
-                <img src="{% static 'img/port1.png' %}" alt="">
-            </div>
-            <div class="hover-items">
-                <h3>Codepad</h3>
-                <div class="icons">
-                    <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-link"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <div class="port-image">
-                <img src="{% static 'img/port1.png' %}" alt="">
-            </div>
-            <div class="hover-items">
-                <h3>TechTrek</h3>
-                <div class="icons">
-                    <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-link"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <div class="port-image">
-                <img src="{% static 'img/port1.png' %}" alt="">
-            </div>
-            <div class="hover-items">
-                <h3>Social Book</h3>
-                <div class="icons">
-                    <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-link"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <div class="port-image">
-                <img src="{% static 'img/port1.png' %}" alt="">
-            </div>
-            <div class="hover-items">
-                <h3>Quiz API</h3>
-                <div class="icons">
-                    <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-link"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <div class="port-image">
-                <img src="{% static 'img/port1.png' %}" alt="">
-            </div>
-            <div class="hover-items">
-                <h3>Simple <br /> InMemory<br /> Filesystem</h3>
-                <div class="icons">
-                    <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-link"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <div class="port-image">
-                <img src="{% static 'img/port1.png' %}" alt="">
-            </div>
-            <div class="hover-items">
-                <h3>Organs4Health</h3>
-                <div class="icons">
-                    <a href="#" class="icon">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="icon">
-                        <i class="fas fa-link"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>
