@@ -553,6 +553,7 @@ section{
     color: var(--color-grey-2);
     line-height: 2rem;
     padding-bottom: 1rem;
+    font-size: 0.9rem;
 }
 
 /*--Contact Info--*/
