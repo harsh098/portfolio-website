@@ -24,5 +24,27 @@ const themeBtn = document.querySelector('.theme-btn');
         }else{
             document.querySelector('body').classList.add('light-mode');
         }
+        
+    })
+
+    document.querySelector('#contact-submit-btn .main-btn').addEventListener('click', (e)=>{
+        e.preventDefault();
+        form = document.querySelector('.contact-form');
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: formData,
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Handle the response data if needed
+            console.log(data);
+        })
+        .catch(error => {
+            // Handle errors
+            console.error(error);
+        });
     })
 })();
+

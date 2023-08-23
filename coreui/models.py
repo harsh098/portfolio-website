@@ -13,9 +13,19 @@ class Project(models.Model):
 
 class CV(models.Model):
     cv = models.FileField(upload_to='cv')
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
     def __str__(self):
         return f'Resume Dated {str(self.created_at)}'
 
+class Message(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True, auto_now=False)
+    replied = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.subject
 
 

@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.exceptions import TemplateDoesNotExist
 from django.http import Http404
+from .models import Message
 from .models import Project, CV
 from .hashnode import getBlogs
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
 import os
 
 
 # Create your views here.
+@cache_page(60 * 5)
 def serve(request):
     try:
         projects = Project.objects.all().order_by('priority')[:10]
@@ -19,6 +22,7 @@ def serve(request):
     except TemplateDoesNotExist:
         raise Http404("404 : Page Not Found")
 
+@cache_page(60 * 5)
 def downloadcv(request):
     cv = CV.objects.order_by('-created_at').first()
     cvURL = cv.cv.path
@@ -34,3 +38,20 @@ def downloadcv(request):
         response['Content-Disposition'] = 'attachment; filename="cv.pdf"'
         
         return response
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        # Get form data from POST request
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        # Create a new Message instance and save it to the database
+        new_message = Message(name=name, email=email, subject=subject, message=message)
+        new_message.save()
+
+        return redirect('contact')  # Redirect to a success page after submission
+    
+    return render(request, 'contact.html')  # Render the form template for GET requests
