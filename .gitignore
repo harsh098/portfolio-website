@@ -4,3 +4,5 @@ db.sqlite3
 venv/
 .vscode/
 media/project_pics/
+.env
+__pycache__/
