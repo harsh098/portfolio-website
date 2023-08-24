@@ -60,3 +60,24 @@ class Experience(models.Model):
             self.ispresent = True
         super().save(*args, **kwargs)
 
+class Skill(models.Model):
+    name = models.CharField(blank=False, null=False, unique=True, max_length=60)
+    def __str__(self):
+        return str(self.name)
+
+class Brand(models.Model):
+    name = models.CharField(max_length=128, blank=False, null=False)
+    headline = models.CharField(max_length=225, blank=False, null=False)
+    bio = models.TextField(max_length=1000, blank=False, null=False)
+    
+    def __str__(self):
+        return "Brand Information"
+
+class AdCard(models.Model):
+    statistic = models.IntegerField(blank=False, null=False)
+    claim = models.CharField(blank=False, null=False, max_length=50)
+
+    def __str__(self):
+        return "Statistic Cards"
+
+
