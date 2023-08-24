@@ -46,5 +46,18 @@ const themeBtn = document.querySelector('.theme-btn');
             console.error(error);
         });
     })
+
+    
+
 })();
 
+(
+    function(){
+        document.querySelectorAll('.blog').forEach(
+            (blog)=>{
+                blog.addEventListener('click', (event)=>{
+                window.location.href = blog.dataset.link;
+            })}
+        );
+    }
+)();

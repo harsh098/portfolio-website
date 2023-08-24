@@ -18,6 +18,7 @@ def getBlogs():
               coverImage
               title
               brief
+              slug
             }
           }
         }
@@ -28,5 +29,5 @@ def getBlogs():
 
     data= run_query(query, headers)
     posts = data['data']['user']['publication']['posts']
-    posts = [{"title":x['title'], "cover":x['coverImage'], "brief":x['brief']} for x in posts]
+    posts = [{"title":x['title'], "cover":x['coverImage'], "brief":x['brief'], "link": f"https://randomtinkering.hashnode.dev/{x['slug']}"} for x in posts]
     return posts
