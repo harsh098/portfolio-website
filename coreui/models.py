@@ -28,4 +28,35 @@ class Message(models.Model):
     def __str__(self):
         return self.subject
 
+class ContactInfo(models.Model):
+    github = models.URLField(default='https://github.com/harsh098')
+    linkedin = models.URLField(default='https://www.linkedin.com/in/harsh-mishra-b94096144/')
+    twitter = models.URLField(default="https://twitter.com/harsh_dev8086")
+    facebook = models.URLField(default=None, null=True, blank=True)
+    discord = models.URLField(default='https://discordapp.com/users/776760813469958174')
+    instagram = models.URLField(default='https://instagram.com/harsh.dev8086')
+    location = models.CharField(default='Noida, India', max_length=255)
+    email = models.EmailField(default='hmisraji07@gmail.com')
+    youtube = models.URLField(default=None, null=True, blank=True)
+    
+    def __str__(self):
+        return "Social"
+
+class Experience(models.Model):
+    date_start = models.DateField(blank=False, null=False)
+    date_end = models.DateField(blank=True, null=True, default=None)
+    post = models.CharField(max_length=60, null=False, blank=False)
+    company = models.CharField(max_length=60, null=False, blank=False)
+    ispresent = models.BooleanField(default=False)
+    description = models.TextField(max_length=255)
+
+    def __str__(self):
+        return f"{str(self.post)}@{str(self.company)}"
+    
+    def save(self, *args, **kwargs):
+        if self.ispresent:
+            self.date_end = None  # Set date_end to None if ispresent is True
+        if self.date_end is None:
+            self.ispresent = True
+        super().save(*args, **kwargs)
 

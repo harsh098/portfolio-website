@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.template.exceptions import TemplateDoesNotExist
 from django.http import Http404
-from .models import Message
+from .models import Message, Experience, ContactInfo
 from .models import Project, CV
 from .hashnode import getBlogs
 from django.http import HttpResponse
@@ -14,9 +14,12 @@ import os
 def serve(request):
     try:
         projects = Project.objects.all().order_by('priority')[:10]
+        exps = Experience.objects.all().order_by('-date_start')
         context = {
             "projects" : projects,
             "blogs" : getBlogs(), 
+            "experience": exps,
+            "contactInfo" : ContactInfo.objects.first(),
         }
         return render(request, 'index.html', context=context)
     except TemplateDoesNotExist:

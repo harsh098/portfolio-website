@@ -4,3 +4,5 @@ from . import models
 admin.site.register(models.Project)
 admin.site.register(models.CV)
 admin.site.register(models.Message)
+admin.site.register(models.Experience)
+admin.site.register(models.ContactInfo)
