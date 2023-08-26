@@ -27,5 +27,5 @@ jobs:
         push: true
         context: "{{defaultContext}}:dockerhub"
         platforms: linux/amd64
-        tags: hmx098/portfolio:latest hmx098/portfolio:${{ github.sha }}
+        tags: hmx098/portfolio:latest, hmx098/portfolio:${{ github.sha }}
            
