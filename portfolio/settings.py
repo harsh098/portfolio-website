@@ -25,8 +25,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'hmx86.dev', 'portfoliohmx.azurewebsites.net']
-
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'hmx86.tech']
 
 # Application definition
 
