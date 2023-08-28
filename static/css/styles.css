@@ -1005,9 +1005,11 @@ section{
 }
 
 @media screen and (min-width: 1251px) and (max-width: 1432px) {
-  .container {
+  .container:not(.sec1) {
     padding: 7rem 11rem;
   }
+
+  
 
   .contact-content-con {
     flex-direction: column;
