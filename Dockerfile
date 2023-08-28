@@ -17,7 +17,7 @@ RUN chmod +x entrypoint.sh
 
 EXPOSE 8000
 
-VOLUME [ "/app/db" ]
+VOLUME [ "/app/db" , "/app/media"]
 
 ENTRYPOINT ["./entrypoint.sh"]
 
