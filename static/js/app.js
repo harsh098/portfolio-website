@@ -40,6 +40,7 @@ const themeBtn = document.querySelector('.theme-btn');
         .then(data => {
             // Handle the response data if needed
             console.log(data);
+            window.location.href = `/message_sent/${formData.get('name')}/${formData.get('email')}`;
         })
         .catch(error => {
             // Handle errors

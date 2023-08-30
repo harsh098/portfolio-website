@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.template.exceptions import TemplateDoesNotExist
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from .models import Message, Experience, ContactInfo, Skill, Brand, AdCard
 from .models import Project, CV
 from .hashnode import getBlogs
@@ -46,6 +46,8 @@ def downloadcv(request):
         
         return response
 
+def success_page(request, name, email):
+    return render(request, 'success.html', context={"sender": str(name), "email": str(email)})
 
 def contact_view(request):
     if request.method == 'POST':
@@ -59,6 +61,6 @@ def contact_view(request):
         new_message = Message(name=name, email=email, subject=subject, message=message)
         new_message.save()
 
-        return redirect('contact')  # Redirect to a success page after submission
+        return HttpResponse(status=200) # Redirect to a success page after submission
     
     return render(request, 'contact.html')  # Render the form template for GET requests
