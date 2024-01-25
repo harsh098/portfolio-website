@@ -2,32 +2,44 @@ from os import getenv
 import requests
 
 def run_query(query, headers):
-    response = requests.post(url="https://api.hashnode.com", json={'query': query}, headers=headers)
+    response = requests.post(url="https://gql.hashnode.com", json={'query': query}, headers=headers)
     if response.status_code == 200:
         return response.json()
     else:
         raise Exception("Query failed to run by returning code of {}. {}".format(response.status_code, query))
 
 def getBlogs():
-    query="""{
-        user(username: "%s") {
-          publication {
-            posts(page: 0) {
-              _id
-              cuid
-              coverImage
+    query="""
+        query Publication {
+        publication(host: "randomtinkering.hashnode.dev") {
+        title
+        posts(first: 10) {
+          edges {
+            node {
               title
               brief
-              slug
+              url
+              coverImage {
+                attribution
+                photographer
+                url
+              }
             }
           }
         }
-      }"""%(str(getenv("HASHNODE_USERNAME")))
+      }
+    }
+    """
     headers = {
         "Authorization" : str(getenv("HASHNODE_API_TOKEN"))
     }
 
     data= run_query(query, headers)
-    posts = data['data']['user']['publication']['posts']
-    posts = [{"title":x['title'], "cover":x['coverImage'], "brief":x['brief'], "link": f"https://randomtinkering.hashnode.dev/{x['slug']}"} for x in posts]
+    posts = data['data']['publication']['posts']['edges']
+    posts = [{
+        "title":x['node']['title'], 
+        "cover":x['node']['coverImage']['url'], 
+        "brief":x['node']['brief'], 
+        "link": f"{x['node']['url']}"
+        } for x in posts]
     return posts
