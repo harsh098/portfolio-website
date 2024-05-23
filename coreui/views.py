@@ -42,7 +42,7 @@ def downloadcv(request):
         response = HttpResponse(pdf_file.read(), content_type='application/pdf')
         
         # Set the Content-Disposition header to trigger download
-        response['Content-Disposition'] = 'attachment; filename="cv.pdf"'
+        response['Content-Disposition'] = 'attachment; filename="Harsh_Mishra_DevOps.pdf"'
         
         return response
 
