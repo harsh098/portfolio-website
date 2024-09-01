@@ -55,12 +55,12 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://hmx86.tech",
-    "http://localhost:8000",
+    "https://hmx86.cloud",
+    "http://localhost:8000"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://hmx86.tech",
+    "https://hmx86.cloud",
     "http://localhost:8000",
 ]
 
