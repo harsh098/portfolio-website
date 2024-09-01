@@ -26,6 +26,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://hmx86.cloud']
+CSRF_TRUSTED_ORIGINS = ['https://hmx86.cloud']
 
 # Application definition
 
